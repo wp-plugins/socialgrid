@@ -9,7 +9,7 @@ SocialGrid is a simple widget that makes it easy to add and organize links to yo
 
 == Description ==
 
-SocialGrid began as a simple addition to my [Tasty Theme](http://whalesalad.com/tasty), and has evolved into a next generation WordPress plugin available for anyone incorporate into their site.
+SocialGrid is a simple widget that makes it easy to add and organize links to your various profiles on the internet. It began as a simple addition to my [Tasty Theme](http://whalesalad.com/tasty), and has evolved into a next generation WordPress plugin available for anyone incorporate into their site.
 
 == Installation ==
 
