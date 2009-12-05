@@ -5,7 +5,7 @@ Requires at least: 2.8
 Tested up to: 2.8
 Stable tag: trunk
 
-SocialGrid is a simple widget that makes it easy to add and organize links to your various profiles on the internet, such as Facebook, YouTube, LinkedIn, Twitter, and more.
+SocialGrid is a simple widget that makes it easy to add and organize links to your various profiles on the internet.
 
 == Description ==
 
