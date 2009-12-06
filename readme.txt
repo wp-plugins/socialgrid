@@ -5,11 +5,13 @@ Requires at least: 2.8
 Tested up to: 2.8
 Stable tag: trunk
 
-SocialGrid is a simple widget that makes it easy to add and organize links to your various profiles on the internet.
+The SocialGrid widget makes it easy to include attractive links to your various social media profiles on the web.
 
 == Description ==
 
 SocialGrid is a simple widget that makes it easy to add and organize links to your various profiles on the internet. It began as a simple addition to my [Tasty Theme](http://whalesalad.com/tasty), and has evolved into a next generation WordPress plugin available for anyone incorporate into their site.
+
+SocialGrid currently supports the following services: Delicious, deviantART, Digg, Facebook, Flickr, Last.fm, LinkedIn, MySpace, RSS, StumbleUpon, Tumblr, Twitpic, Twitter, Vimeo, and YouTube!
 
 == Installation ==
 
@@ -24,6 +26,9 @@ SocialGrid is a simple widget that makes it easy to add and organize links to yo
 3. This shot shows the drag-and-drop interface, by demonstrating the removal of the Facebook icon from the grid.
 
 == Changelog ==
+
+= 2.02 =
+* Improved compatibility with many themes with some !important action on the CSS.
 
 = 2.01 =
 * Fixed a minor issue with the RSS feed url, and css styling.
