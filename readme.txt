@@ -24,11 +24,13 @@ SocialGrid currently supports the following services: Delicious, deviantART, Dig
 1. This is the SocialGrid being shown here on a blog with a dark background. It also looks great on sites with a white background.
 2. This shot demonstrates how easy it is to add items to the SocialGrid with the back-end admin interface.
 3. This shot shows the drag-and-drop interface, by demonstrating the removal of the Facebook icon from the grid.
+4. This screenshot demonstrates the wide variety of services you can add to your site with SocialGrid.
 
 == Changelog ==
 
 = 2.02 =
 * Improved compatibility with many themes with some !important action on the CSS.
+* Fixed an issue where services could be added more than once.
 
 = 2.01 =
 * Fixed a minor issue with the RSS feed url, and css styling.
