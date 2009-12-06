@@ -1,6 +1,6 @@
 === SocialGrid ===
 Contributors: whalesalad
-Tags: social media, ajax, widget, facebook, lastfm, linkedin, youtube
+Tags: Social Media, Widget, AJAX, Delicious, deviantART, Digg, Facebook, Flickr, Lastfm, LinkedIn, MySpace, RSS, StumbleUpon, Tumblr, Twitpic, Twitter, Vimeo, and YouTube
 Requires at least: 2.8
 Tested up to: 2.8
 Stable tag: trunk
