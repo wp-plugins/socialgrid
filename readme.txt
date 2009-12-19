@@ -2,7 +2,7 @@
 Contributors: whalesalad
 Tags: Social Media, Widget, AJAX, Delicious, deviantART, Digg, Facebook, Flickr, Lastfm, LinkedIn, MySpace, RSS, StumbleUpon, Tumblr, Twitpic, Twitter, Vimeo, YouTube
 Requires at least: 2.8
-Tested up to: 2.8
+Tested up to: 2.9
 Stable tag: trunk
 
 The SocialGrid widget makes it easy to include attractive links to your various social media profiles on the web.
