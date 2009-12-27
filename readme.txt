@@ -1,6 +1,6 @@
 === SocialGrid ===
 Contributors: whalesalad
-Tags: Social Media, Widget, AJAX, Delicious, deviantART, Digg, Facebook, Flickr, Lastfm, LinkedIn, MySpace, RSS, StumbleUpon, Tumblr, Twitpic, Twitter, Vimeo, YouTube, Posterous, FriendFeed, Brightkite, Dopplr, Ember, Qik, Readernaut, Virb
+Tags: Social Media, Widget, AJAX, Brightkite, Delicious, deviantART, Digg, Dopplr, Ember, Facebook, Flickr, Friendfeed, Google Profile, Last.fm, LinkedIn, MySpace, Picasa Web, Posterous, Qik, Readernaut, Reddit, RSS, StumbleUpon, Tumblr, Twitter, Viddler, Vimeo, Virb, YouTube
 Requires at least: 2.8
 Tested up to: 2.9
 Stable tag: trunk
@@ -11,7 +11,7 @@ The SocialGrid widget makes it easy to include attractive links to your various 
 
 SocialGrid is a simple widget that makes it easy to add and organize links to your various profiles on the internet. It began as a simple addition to my [Tasty Theme](http://whalesalad.com/tasty), and has evolved into a next generation WordPress plugin available for anyone incorporate into their site.
 
-SocialGrid currently supports the following services: Delicious, deviantART, Digg, Facebook, Flickr, Last.fm, LinkedIn, MySpace, RSS, StumbleUpon, Tumblr, Twitter, Viddler, Virb, Vimeo, and YouTube!
+SocialGrid currently supports the following services: Brightkite, Delicious, deviantART, Digg, Dopplr, Ember, Facebook, Flickr, Friendfeed, Google Profile, Last.fm, LinkedIn, MySpace, Picasa Web, Posterous, Qik, Readernaut, Reddit, RSS, StumbleUpon, Tumblr, Twitter, Viddler, Vimeo, Virb, and YouTube!
 
 == Installation ==
 
