@@ -13,6 +13,8 @@ SocialGrid is a simple widget that makes it easy to add and organize links to yo
 
 SocialGrid currently supports the following services: Brightkite, Delicious, deviantART, Digg, Dopplr, Ember, Facebook, Flickr, Friendfeed, Google Profile, Last.fm, LinkedIn, MySpace, Picasa Web, Posterous, Qik, Readernaut, Reddit, RSS, StumbleUpon, Tumblr, Twitter, Viddler, Vimeo, Virb, and YouTube!
 
+The icon set used in this plugin is from the very talented Rogie King of Komodo Media, [check them out](http://www.komodomedia.com/blog/2009/06/social-network-icon-pack/)!
+
 == Installation ==
 
 * Upload the `socialgrid` directory to the `/wp-content/plugins/` directory, and enable it in the plugins area of your WordPress admin.
