@@ -6,6 +6,9 @@ SocialGridAdmin = {
         
         this.home_screen = _$('#socialgrid-home-screen');
         this.dropzone = _$('#socialgrid-drop-delete');
+        this.settings_button = _$('#socialgrid-settings-button');
+
+        this.mini_icons_enabled = SG_MINI_ICONS;
         
         this.items = _$('.socialgrid-items');
         
@@ -53,6 +56,117 @@ SocialGridAdmin = {
                 sg.edit_service(service_name);
             };
         });
+        
+        sg.settings_button.bind('click', function(event) {
+            sg.open_settings();
+            return false;
+        });
+    },
+    
+    open_settings: function() {
+        var sg = this;
+        
+        sg.settings_screen = _$('<div/>')
+            .addClass('socialgrid-pane')
+            .addClass('socialgrid-settings-pane')
+            .appendTo('#socialgrid-content');
+        
+        settings_html = [
+            '<h3>SocialGrid Settings</h3>',
+            '<div class="field">',
+                '<p>You can use 16px \'mini\' icons instead of the large 32px icons. This setting is reflected on your website, not in the SocialGrid admin.</p>',
+                '<input type="checkbox" name="sg-mini-icons" id="sg-mini-icons" />',
+                '<label for="sg-mini-icons">Enable Mini Icons</label>',
+            '</div>'
+        ];
+        
+        sg.settings_screen.html(settings_html.join(""));
+        
+        if (sg.mini_icons_enabled) {
+            _$('#sg-mini-icons').attr('checked', 'checked');
+        }
+        
+        sg.reset_button = sg.create_button('Reset', function() {
+            // will reset all of SG
+            sg.settings_confirm_reset();
+        }).appendTo('#socialgrid-header');
+        
+        // SERVICE FOOTER
+        sg.settings_footer_container = _$('<div/>').addClass('socialgrid-footer-container').appendTo(sg.settings_screen);
+        sg.settings_footer = _$('<ul/>').addClass('socialgrid-footer').appendTo(sg.settings_footer_container);
+        
+        // Add a save button
+        sg.settings_footer.append(sg.create_edit_button('green', 'Save', function() {
+            sg.settings_screen.trigger('save_settings');
+        }));
+        
+        // Add a cancel button
+        sg.settings_footer.append(sg.create_edit_button('red', 'Cancel', function() {
+            sg.reset_button.fadeOut('fast', function(){
+                sg.reset_button.remove();
+            });
+            sg.return_to_home(300);
+        }));
+        
+        // Hide the socialgrid items (the grid)
+        // sg.home_screen.hide('slide', { direction: 'left' }, 500);
+        sg.hide_homescreen();
+        sg.settings_screen.show('slide', { direction: 'right' }, 500);
+        
+        sg.settings_screen.bind('save_settings', function(event) {
+            checkbox = _$('#sg-mini-icons');
+            if (checkbox.attr('checked')) {
+                sg.save_icon_size('mini')
+            } else {
+                sg.save_icon_size('standard')
+            };
+            
+            sg.reset_button.fadeOut('fast', function(){
+                sg.reset_button.remove();
+            });
+            sg.return_to_home();
+        });
+        
+    },
+    
+    settings_confirm_reset: function() {
+        // confirm the reset of all settings
+        var sg = this;
+        
+        sg.reset_button.fadeOut();
+        
+        sg.reset_screen = _$('<div/>')
+            .addClass('socialgrid-pane')
+            .addClass('socialgrid-settings-pane')
+            .appendTo('#socialgrid-content');
+        
+        reset_html = [
+            '<h3>Reset SocialGrid</h3>',
+            '<p>If you are having problems with SG or would simply like to start fresh, you can reset your settings.</p>',
+            '<p>Keep in mind, resetting SocialGrid will remove all of your icons from your website and give you a fresh clean slate to work with.</p>',
+        ];
+        
+        sg.reset_screen.html(reset_html.join(""));
+        
+        // RESET FOOTER
+        sg.reset_footer_container = _$('<div/>').addClass('socialgrid-footer-container').appendTo(sg.reset_screen);
+        sg.reset_footer = _$('<ul/>').addClass('socialgrid-footer').appendTo(sg.reset_footer_container);
+        
+        // Add a save button
+        sg.reset_footer.append(sg.create_edit_button('green', 'Yes, Reset', function() {
+            // RESET LOGIC
+            sg.settings_do_reset();
+        }));
+        
+        // Add a cancel button
+        sg.reset_footer.append(sg.create_edit_button('red', 'Cancel', function() {
+            sg.reset_screen.hide('slide', { direction: 'right' }, 500);
+            sg.settings_screen.show('slide', { direction: 'left' }, 500);
+            sg.reset_button.fadeIn();
+        }));
+        
+        sg.switch_screen(sg.reset_screen, sg.settings_screen);
+        
     },
     
     select_service: function() {
@@ -88,7 +202,8 @@ SocialGridAdmin = {
         }
         
         // Hide the socialgrid items (the grid)
-        sg.home_screen.hide('slide', { direction: 'left' }, 500);
+        // sg.home_screen.hide('slide', { direction: 'left' }, 500);
+        sg.hide_homescreen();
         sg.add_screen.show('slide', { direction: 'right' }, 500);
         
     },
@@ -151,7 +266,8 @@ SocialGridAdmin = {
         //
         // SERVICE FOOTER
         //
-        sg.service_footer = _$('<div/>').addClass('socialgrid-service-footer').appendTo(sg.service_screen);
+        sg.service_footer_container = _$('<div/>').addClass('socialgrid-footer-container').appendTo(sg.service_screen);
+        sg.service_footer = _$('<ul/>').addClass('socialgrid-footer').appendTo(sg.service_footer_container);
         
         // Add a save button
         sg.service_footer.append(sg.create_edit_button('green', 'Add', function() {
@@ -208,8 +324,9 @@ SocialGridAdmin = {
             sg.service_screen.html(sg.service_screen_html.join(''));
             
             // Create the footer for the buttons
-            sg.service_footer = _$('<div/>').addClass('socialgrid-service-footer').appendTo(sg.service_screen);
-
+            sg.service_footer_container = _$('<div/>').addClass('socialgrid-footer-container').appendTo(sg.service_screen);
+            sg.service_footer = _$('<ul/>').addClass('socialgrid-footer').appendTo(sg.service_footer_container);
+            
             // Add a cancel button
             sg.service_footer.append(sg.create_edit_button('red', 'Back', function() {
                 sg.return_to_home();
@@ -244,7 +361,9 @@ SocialGridAdmin = {
             });
 
             // Create the footer for the buttons
-            sg.service_footer = _$('<div/>').addClass('socialgrid-service-footer').appendTo(sg.service_screen);
+            sg.service_footer_container = _$('<div/>').addClass('socialgrid-footer-container').appendTo(sg.service_screen);
+            sg.service_footer = _$('<ul/>').addClass('socialgrid-footer').appendTo(sg.service_footer_container);
+            
 
             // Add a save button
             sg.service_footer.append(sg.create_edit_button('green', 'Save', function() {
@@ -257,7 +376,8 @@ SocialGridAdmin = {
             }));
         }
         
-        sg.home_screen.hide('slide', { direction: 'left' }, 500);
+        // sg.home_screen.hide('slide', { direction: 'left' }, 500);
+        sg.hide_homescreen();
         sg.service_screen.show('slide', { direction: 'right' }, 500, function() {
             if (slug != 'rss') sg.service_input.focus();
         });
@@ -270,7 +390,6 @@ SocialGridAdmin = {
             } else {
                 sg.remote_edit(slug, username);
             }
-            
         });
     },
     
@@ -378,6 +497,55 @@ SocialGridAdmin = {
         });
     },
     
+    // Save Icon Size
+    save_icon_size: function(size) {
+        var sg = this;
+        
+        _$.ajax({
+            url: window.ajaxurl,
+            type: 'POST',
+            data: {
+                'action': 'toggle_socialgrid_icon_size',
+                'size': size,
+            },
+            
+            success: function() {
+                if (size == 'standard') {
+                    sg.mini_icons_enabled = false;
+                } else {
+                    sg.mini_icons_enabled = true;
+                }
+            },
+            
+            error: function() {
+                alert('error');
+            }
+        });
+    },
+    
+    settings_do_reset: function () {
+        var sg = this;
+        
+        _$.ajax({
+            url: window.ajaxurl,
+            type: 'POST',
+            data: {
+                'action': 'master_socialgrid_reset'
+            },
+            
+            success: function() {
+                window.location = window.location+'&reloaded=true';
+            },
+            
+            error: function() {
+                alert('error');
+            }
+        });
+        
+    },
+    
+    //////////
+    
     parse_url: function(url, username) {
         var replacement = /\%s/;
         username = '<span class="socialgrid-username-replace">'+username+'</span>';
@@ -387,7 +555,7 @@ SocialGridAdmin = {
     create_edit_button: function(type, text, callback) {
         // type can be red or green
         // callback is the function to exec when done
-        button = _$('<a/>')
+        button = _$('<li/>').append(_$('<a/>')
             .attr('href', '#')
             .addClass('socialgrid-button')
             .addClass(type)
@@ -395,9 +563,28 @@ SocialGridAdmin = {
             .bind('click', function() {
                 callback();
                 return false;
+            }));
+        
+        return button;
+    },
+    
+    create_button: function(text, callback) {
+        button = _$('<a/>')
+            .attr('href', '#')
+            .addClass('socialgrid-button')
+            .html('<span>'+text+'</span>')
+            .bind('click', function() {
+                if (callback) { callback(); }
+                return false;
             });
         
         return button;
+    },
+    
+    hide_homescreen: function() {
+        var sg = this;
+        sg.settings_button.fadeOut('fast');
+        sg.home_screen.hide('slide', { direction: 'left' }, 500);
     },
     
     return_to_home: function(speed) {
@@ -409,5 +596,12 @@ SocialGridAdmin = {
             _$(this).remove();
         });
         sg.home_screen.show('slide', { direction: 'left' }, s);
+        
+        sg.settings_button.fadeIn('fast');
+    },
+    
+    switch_screen: function(screen_in, screen_out) {
+        screen_out.hide('slide', { direction: 'left' }, 500);
+        screen_in.show('slide', { direction: 'right' }, 500);
     }
 };

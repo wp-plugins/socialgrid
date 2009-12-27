@@ -1,6 +1,6 @@
 === SocialGrid ===
 Contributors: whalesalad
-Tags: Social Media, Widget, AJAX, Delicious, deviantART, Digg, Facebook, Flickr, Lastfm, LinkedIn, MySpace, RSS, StumbleUpon, Tumblr, Twitpic, Twitter, Vimeo, YouTube
+Tags: Social Media, Widget, AJAX, Delicious, deviantART, Digg, Facebook, Flickr, Lastfm, LinkedIn, MySpace, RSS, StumbleUpon, Tumblr, Twitpic, Twitter, Vimeo, YouTube, Posterous, FriendFeed, Brightkite, Dopplr, Ember, Qik, Readernaut, Virb
 Requires at least: 2.8
 Tested up to: 2.9
 Stable tag: trunk
@@ -11,7 +11,7 @@ The SocialGrid widget makes it easy to include attractive links to your various 
 
 SocialGrid is a simple widget that makes it easy to add and organize links to your various profiles on the internet. It began as a simple addition to my [Tasty Theme](http://whalesalad.com/tasty), and has evolved into a next generation WordPress plugin available for anyone incorporate into their site.
 
-SocialGrid currently supports the following services: Delicious, deviantART, Digg, Facebook, Flickr, Last.fm, LinkedIn, MySpace, RSS, StumbleUpon, Tumblr, Twitpic, Twitter, Vimeo, and YouTube!
+SocialGrid currently supports the following services: Delicious, deviantART, Digg, Facebook, Flickr, Last.fm, LinkedIn, MySpace, RSS, StumbleUpon, Tumblr, Twitter, Viddler, Virb, Vimeo, and YouTube!
 
 == Installation ==
 
@@ -21,12 +21,20 @@ SocialGrid currently supports the following services: Delicious, deviantART, Dig
 
 == Screenshots ==
 
-1. This is the SocialGrid being shown here on a blog with a dark background. It also looks great on sites with a white background.
-2. This shot demonstrates how easy it is to add items to the SocialGrid with the back-end admin interface.
-3. This shot shows the drag-and-drop interface, by demonstrating the removal of the Facebook icon from the grid.
-4. This screenshot demonstrates the wide variety of services you can add to your site with SocialGrid.
+1. This screenshot shows the vast number of services that you can add to your site with SocialGrid.
+2. This shot demonstrates how easy it is to add items to the SocialGrid with the back-end admin interface, simply type in your username and hit add.
+3. This screenshot shows the easy settings panel to toggle between large and mini icons, everything saves with AJAX.
+4. This screenshot shows how simple it is to rearrange icons using the AJAX interface, just drag and drop them into the order you want and it saves automagically.
+5. Shown here is how easy it is to remove items, when you begin dragging an icon the delete drop zone appears at the bottom of the SocialGrid, where you simply drop items to remove them.
+6. Finally, this is what the SocialGrid looks like on your website. It's friendly to both dark and light backgrounds. This is the large (default) icon size.
+7. Shown here is the mini icon size, which is an easy setting to change inside of your SocialGrid settings area. Simply check the box, hit save, and you've got mini icons!
 
 == Changelog ==
+
+= 2.1 =
+* ALL NEW icons! New services added like Posterous, FriendFeed, and Brightkite!
+* ALL NEW icon size! Now you can show "mini" 16x16 pixel icons on your site, instead of the normal 32x32 pixel ones.
+* Added a simple reset system to get your SocialGrid back to default settings, in case you want to start fresh.
 
 = 2.02 =
 * Improved compatibility with many themes with some !important action on the CSS.

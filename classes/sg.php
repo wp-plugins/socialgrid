@@ -6,6 +6,51 @@
 
 class SG {
     public $default_services = array(
+        "brightkite" => array(
+            "name" => "Brightkite",
+            "text" => "My Brightkite Profile",
+            "url" => "brightkite.com/people/%s"),
+
+        "dopplr" => array(
+            "name" => "Dopplr",
+            "text" => "My Dopplr Trips",
+            "url" => "www.dopplr.com/traveller/%s"),
+        
+        "friendfeed" => array(
+            "name" => "Friendfeed",
+            "text" => "My Friendfeed Profile",
+            "url" => "friendfeed.com/%s"),
+        
+        "picasa" => array(
+            "name" => "Picasa Web",
+            "text" => "My Picasa Web Albums",
+            "url" => "picasaweb.google.com/%s"),
+            
+        "google" => array(
+            "name" => "Google Profile",
+            "text" => "My Google Profile",
+            "url" => "www.google.com/profiles/%s"),
+        
+        "ember" => array(
+            "name" => "Ember",
+            "text" => "My Ember Images",
+            "url" => "emberapp.com/%s"),
+            
+        "qik" => array(
+            "name" => "Qik",
+            "text" => "My Qik Videos",
+            "url" => "qik.com/%s"),
+        
+        "readernaut" => array(
+            "name" => "Readernaut",
+            "text" => "My Books on Readernaut",
+            "url" => "readernaut.com/%s"),
+        
+        "reddit" => array(
+            "name" => "Reddit",
+            "text" => "My Reddit Profile",
+            "url" => "www.reddit.com/user/%s"),
+        
         "delicious" => array(
             "name" => "Delicious",
             "text" => "My Delicious Bookmarks",
@@ -39,12 +84,17 @@ class SG {
         "linkedin" => array(
             "name" => "LinkedIn",
             "text" => "My LinkedIn Profile",
-            "url" => "linkedin.com/in/%s"),
+            "url" => "www.linkedin.com/in/%s"),
 
         "myspace" => array(
             "name" => "MySpace",
             "text" => "My MySpace Profile",
             "url" => "myspace.com/%s"),
+
+        "posterous" => array(
+            "name" => "Posterous",
+            "text" => "My Posterous",
+            "url" => "%s.posterous.com"),
 
         "rss" => array(
             "name" => "RSS",
@@ -61,11 +111,6 @@ class SG {
             "text" => "My Tumblr",
             "url" => "%s.tumblr.com"),
 
-        "twitpic" => array(
-            "name" => "TwitPic",
-            "text" => "My TwitPic Photos",
-            "url" => "twitpic.com/photos/%s"),
-
         "twitter" => array(
             "name" => "Twitter",
             "text" => "My Tweets",
@@ -75,6 +120,16 @@ class SG {
             "name" => "Vimeo",
             "text" => "My Vimeo Videos",
             "url" => "vimeo.com/%s"),
+        
+        "viddler" => array(
+            "name" => "Viddler",
+            "text" => "My Viddler Videos",
+            "url" => "viddler.com/explore/%s"),
+
+        "virb" => array(
+            "name" => "Virb",
+            "text" => "My Virb Profile",
+            "url" => "virb.com/%s"),
 
         "youtube" => array(
             "name" => "YouTube",
@@ -96,7 +151,9 @@ class SG {
         $services = $this->services;
 
         if ($services) {
-            echo '<ul id="socialGrid">';
+            $size = ($this->settings->enable_small_icons) ? "mini" : "standard";
+            
+            echo '<ul id="socialGrid" class="'.$size.'">';
             
             $grid_items = array();
             

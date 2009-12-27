@@ -3,7 +3,7 @@
 Plugin Name: SocialGrid
 Plugin URI: http://whalesalad.com/socialgrid
 Description: SocialGrid makes it easy to include attractive links to your various social media profiles on the web.
-Version: 2.02
+Version: 2.1
 Author: Michael Whalen
 Author URI: http://whalesalad.com
 */
@@ -11,7 +11,7 @@ Author URI: http://whalesalad.com
 define('WP_DEBUG', true);
 
 // Define global SocialGrid constants
-define('SG_VERSION', 2.02);
+define('SG_VERSION', 2.1);
 define('SG_NAME', 'SocialGrid');
 define('SG_SLUG', 'socialgrid');
 
@@ -35,6 +35,8 @@ add_action('wp_ajax_add_socialgrid_service', 'socialgrid_add_service_rpc');
 add_action('wp_ajax_update_socialgrid_service', 'socialgrid_update_service_rpc');
 add_action('wp_ajax_remove_socialgrid_service', 'socialgrid_remove_service_rpc');
 add_action('wp_ajax_rearrange_socialgrid_services', 'socialgrid_rearrange_rpc');
+add_action('wp_ajax_toggle_socialgrid_icon_size', 'socialgrid_toggle_icon_size_rpc');
+add_action('wp_ajax_master_socialgrid_reset', 'socialgrid_master_reset_rpc');
 
 function socialgrid_add_options_page() {
     add_theme_page(__(SG_NAME.' Options', SG_SLUG), __(SG_NAME.' Options', SG_SLUG), 'edit_themes', SG_SLUG.'-options', SG_SLUG.'_options_admin');
@@ -60,18 +62,27 @@ function socialgrid_settings_head() {
     <script type="text/javascript">
         SG_DEFAULTS = <?php echo json_encode($sg_admin->default_services); ?>;
         SG_SERVICES = <?php echo json_encode($sg_admin->inline_service_list()); ?>;
+        SG_MINI_ICONS = <?php echo json_encode($sg_admin->settings->enable_small_icons); ?>;
         jQuery(document).ready(function() {
             SocialGridAdmin.init();
-        })
+        });
     </script>
 <?php }
 
 // Admin Page
 function socialgrid_options_admin() { 
     global $sg_admin, $sg_settings; ?>
+    
+    <?php if ($_GET['reloaded']): ?>
+    <div id="updated" class="updated fade">
+        <p><?php echo __('SocialGrid has been reset successfully!', 'socialgrid'); ?></p>
+    </div>
+    <?php endif; ?>
+    
     <div id="socialgrid-admin">
         <div id="socialgrid-header">
             <h3>SOCIALGRID</h3>
+            <a id="socialgrid-settings-button" class="socialgrid-button"><span>Settings</span></a>
         </div>
         
         <div id="socialgrid-content">
@@ -88,11 +99,17 @@ function socialgrid_options_admin() {
     </div>
 
     <h2><?php _e(SG_NAME.' Options', SG_SLUG); ?></h2>
+    
     <p>SocialGrid is a widget that you can place in your sidebar that features any of the social network or profile sites you choose.</p>
     <p><strong>Use the interface below to add and rearrange the services however you'd like. <br/>Socialgrid saves your settings automatically as you interact with it.</strong></p>
     
     <p>You configure the <strong>settings</strong> for SocialGrid here on this page. To add SocialGrid to your sidebar<br/>
         visit the <a href="<?php echo admin_url('widgets.php') ?>">Widget</a> settings area. There you can add SocialGrid to your sidebar and position it wherever you'd like.</p>
+    
+    <br/>
+    
+    <p>If you like what you see here, <a href="http://whalesalad.com/tasty" target="_blank">check out Tasty</a>, a WordPress theme also created by Michael Whalen.</p>
+    <p><small>The icons used in SocialGrid were created by <a target="_blank" href="http://www.komodomedia.com/blog/2009/06/social-network-icon-pack/">Rogie King of Komodo Media</a>.</small></p>
 <?php } 
 
 
@@ -166,11 +183,28 @@ function socialgrid_remove_service_rpc() {
         $i++;
     }
     
-    print_r($sg_settings->services);
+    $sg_settings->save();
+}
+
+function socialgrid_toggle_icon_size_rpc() {
+    global $sg_settings;
+    
+    $size = $_POST['size'];
+    
+    if ($size == 'mini') {
+        $sg_settings->enable_small_icons = true;
+    } else if ($size == 'standard') {
+        $sg_settings->enable_small_icons = false;
+    }
     
     $sg_settings->save();
 }
 
+function socialgrid_master_reset_rpc() {
+    global $sg_settings;
+    
+    $sg_settings->reset();
+}
 
 // Create the widget
 class SocialGridWidget extends WP_Widget {
