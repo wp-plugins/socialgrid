@@ -1,6 +1,6 @@
 === SocialGrid ===
 Contributors: whalesalad
-Tags: Social Media, Widget, AJAX, Brightkite, Delicious, deviantART, Digg, Dopplr, Ember, Facebook, Flickr, Friendfeed, Google Profile, Last.fm, LinkedIn, MySpace, Picasa Web, Posterous, Qik, Readernaut, Reddit, RSS, StumbleUpon, Tumblr, Twitter, Viddler, Vimeo, Virb, YouTube
+Tags: Social Media, Widget, AJAX, brightkite, delicious, deviantart, digg, dopplr, ember, facebook, flickr, friendfeed, google, lastfm, linkedin, myspace, picasa, posterous, qik, readernaut, reddit, rss, stumbleupon, tumblr, twitter, viddler, vimeo, virb, youtube
 Requires at least: 2.8
 Tested up to: 2.9
 Stable tag: trunk
