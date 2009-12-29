@@ -33,6 +33,9 @@ The icon set used in this plugin is from the very talented Rogie King of Komodo 
 
 == Changelog ==
 
+= 2.11 =
+* Added Technorati to the mix of new icons. It behaves similarly to the RSS icon, in that it doesn't require any input and generates your Technorati profile link automatically.
+
 = 2.1 =
 * ALL NEW icons! New services added like Posterous, FriendFeed, and Brightkite!
 * ALL NEW icon size! Now you can show "mini" 16x16 pixel icons on your site, instead of the normal 32x32 pixel ones.

@@ -3,7 +3,7 @@
 Plugin Name: SocialGrid
 Plugin URI: http://whalesalad.com/socialgrid
 Description: SocialGrid makes it easy to include attractive links to your various social media profiles on the web.
-Version: 2.1
+Version: 2.11
 Author: Michael Whalen
 Author URI: http://whalesalad.com
 */
@@ -11,7 +11,7 @@ Author URI: http://whalesalad.com
 define('WP_DEBUG', true);
 
 // Define global SocialGrid constants
-define('SG_VERSION', 2.1);
+define('SG_VERSION', 2.11);
 define('SG_NAME', 'SocialGrid');
 define('SG_SLUG', 'socialgrid');
 
@@ -107,7 +107,7 @@ function socialgrid_options_admin() {
         visit the <a href="<?php echo admin_url('widgets.php') ?>">Widget</a> settings area. There you can add SocialGrid to your sidebar and position it wherever you'd like.</p>
     
     <br/>
-    
+        
     <p>If you like what you see here, <a href="http://whalesalad.com/tasty" target="_blank">check out Tasty</a>, a WordPress theme also created by Michael Whalen.</p>
     <p><small>The icons used in SocialGrid were created by <a target="_blank" href="http://www.komodomedia.com/blog/2009/06/social-network-icon-pack/">Rogie King of Komodo Media</a>.</small></p>
 <?php } 
@@ -127,6 +127,9 @@ function socialgrid_add_service_rpc() {
     // Create the new setting
     if ($service == 'rss') {
         $new_service = new SocialGridRSSService($sg_admin, $index);
+    } else if ($service == 'technorati') {
+        $blog_url = parse_url(get_bloginfo('url'));
+        $new_service = new SocialGridService($sg_admin, $service, $blog_url['host'], $index);
     } else {
         $new_service = new SocialGridService($sg_admin, $service, $username, $index);
     }
