@@ -33,6 +33,9 @@ The icon set used in this plugin is from the very talented Rogie King of Komodo 
 
 == Changelog ==
 
+= 2.2 =
+* Implemented a simple check to ensure that PHP4 users are notified that their servers are out of date, with instructions on how to switch to PHP5.
+
 = 2.11 =
 * Added Technorati to the mix of new icons. It behaves similarly to the RSS icon, in that it doesn't require any input and generates your Technorati profile link automatically.
 
