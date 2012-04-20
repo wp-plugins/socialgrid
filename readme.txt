@@ -1,8 +1,8 @@
 === SocialGrid ===
 Contributors: whalesalad
-Tags: Social Media, Widget, AJAX, brightkite, delicious, deviantart, digg, dopplr, ember, facebook, flickr, friendfeed, google, lastfm, linkedin, myspace, picasa, posterous, qik, readernaut, reddit, rss, stumbleupon, tumblr, twitter, technorati, viddler, vimeo, virb, youtube
+Tags: Social Media, Widget, AJAX, cargo collective, dribbble, delicious, deviantart, digg, dopplr, ember, facebook, flickr, forrst, google, google+, lastfm, linkedin, myspace, picasa, posterous, qik, readernaut, reddit, rss, stumbleupon, tumblr, twitter, technorati, viddler, vimeo, virb, youtube
 Requires at least: 2.8
-Tested up to: 2.9
+Tested up to: 3.3.1
 Stable tag: trunk
 
 The SocialGrid widget makes it easy to include attractive links to your various social media profiles on the web.
@@ -11,7 +11,9 @@ The SocialGrid widget makes it easy to include attractive links to your various 
 
 SocialGrid is a simple widget that makes it easy to add and organize links to your various profiles on the internet. It began as a simple addition to my [Tasty Theme](http://whalesalad.com/tasty), and has evolved into a next generation WordPress plugin available for anyone incorporate into their site.
 
-SocialGrid currently supports the following services: Brightkite, Delicious, deviantART, Digg, Dopplr, Ember, Facebook, Flickr, Friendfeed, Google Profile, Last.fm, LinkedIn, MySpace, Picasa Web, Posterous, Qik, Readernaut, Reddit, RSS, StumbleUpon, Tumblr, Twitter, Technorati, Viddler, Vimeo, Virb, and YouTube!
+SocialGrid currently supports the following services: Cargo Collective, Dribbble, Delicious, deviantART, Digg, Dopplr, Ember, Facebook, Flickr, Forrst, Google+, Last.fm, LinkedIn, MySpace, Picasa Web, Posterous, Qik, Readernaut, Reddit, RSS, StumbleUpon, Tumblr, Twitter, Technorati, Viddler, Vimeo, Virb, and YouTube!
+
+This plugin works great with my [Tasty WordPress Theme](http://whalesalad.com/tasty)!
 
 The icon set used in this plugin is from the very talented Rogie King of Komodo Media, [check them out](http://www.komodomedia.com/blog/2009/06/social-network-icon-pack/)!
 
@@ -32,6 +34,12 @@ The icon set used in this plugin is from the very talented Rogie King of Komodo 
 7. Shown here is the mini icon size, which is an easy setting to change inside of your SocialGrid settings area. Simply check the box, hit save, and you've got mini icons!
 
 == Changelog ==
+
+= 2.4 =
+* Removed Brightkite and Friendfeed.
+* Added Cargo Collective, Dribble and Forrst. 
+* Replaced Google Profile with Google+. 
+* The text for each item can now be changed in classes/sg.php.
 
 = 2.3 =
 * Added a feature to disable tooltips completely.

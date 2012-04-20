@@ -3,34 +3,36 @@
 Plugin Name: SocialGrid
 Plugin URI: http://whalesalad.com/socialgrid
 Description: SocialGrid makes it easy to include attractive links to your various social media profiles on the web.
-Version: 2.3
+Version: 2.4
 Author: Michael Whalen
 Author URI: http://whalesalad.com
 */
 
-define('WP_DEBUG', true);
-
 // Define global SocialGrid constants
-define('SG_VERSION', 2.3);
+define('SG_VERSION', 2.4);
 define('SG_NAME', 'SocialGrid');
 define('SG_SLUG', 'socialgrid');
 
 // Define path to SocialGrid libs and direct url to SocialGrid static assets
-define('SG_CLASS_LIB', dirname(__FILE__).'/classes');
+define('SG_CLASS_LIB', dirname(__FILE__).'/classes/');
 define('SG_STATIC', WP_PLUGIN_URL.'/'.basename(dirname(__FILE__)).'/static');
 
 // IF WE'RE DEALIN WITH PHP5
 if (is_php5()) {
     // Load various classes...
-    require_once(SG_CLASS_LIB.'/service.php');
-    require_once(SG_CLASS_LIB.'/settings.php');
-    require_once(SG_CLASS_LIB.'/sg.php');
+    foreach (glob(SG_CLASS_LIB.'*.class.php') as $filename) {
+        require_once $filename;
+    }
 
     // Jump on various WP Admin hooks
     add_action('admin_menu', SG_SLUG.'_add_options_page');
-    add_action('admin_post_'.SG_SLUG.'_save', SG_SLUG.'_save_options');
-    add_action('init', SG_SLUG.'_settings_init');
-    add_action('admin_head', SG_SLUG.'_settings_head');
+
+    if (isset($_GET['page']) and $_GET['page'] == 'socialgrid-options') {
+        add_action('admin_post_'.SG_SLUG.'_save', SG_SLUG.'_save_options');
+        add_action('init', SG_SLUG.'_settings_init');
+        add_action('admin_head', SG_SLUG.'_settings_head');
+    }
+    add_action('init', SG_SLUG.'_frontend_init');
 
     // Create the various AJAX actions, see functions at end of file.
     add_action('wp_ajax_add_socialgrid_service', 'socialgrid_add_service_rpc');
@@ -55,26 +57,29 @@ function socialgrid_add_options_page() {
 
 function socialgrid_settings_init() {
     global $sg_settings;
-    if (is_admin()) {
+    if (is_admin() and isset($_GET['page']) and $_GET['page'] == 'socialgrid-options') {
         wp_enqueue_style(SG_SLUG.'-admin-stylesheet',  SG_STATIC.'/css/'.SG_SLUG.'-admin.css');
         wp_enqueue_script(SG_SLUG.'-admin-js', SG_STATIC.'/js/'.SG_SLUG.'-admin.js');
         wp_enqueue_script(SG_SLUG.'-admin-jquery-ui', SG_STATIC.'/js/jquery-ui-1.7.2.custom.min.js');
-    } else {
-        if (!$sg_settings->disable_tooltips) {
-            wp_enqueue_script('jquery');
-            wp_enqueue_script(SG_SLUG.'-js', SG_STATIC.'/js/'.SG_SLUG.'.js');
-        }
-        wp_enqueue_style(SG_SLUG.'-stylesheet',  SG_STATIC.'/css/'.SG_SLUG.'.css');
     }
+}
+
+function socialgrid_frontend_init() {
+    global $sg_settings;
+    if (!$sg_settings->disable_tooltips) {
+        wp_enqueue_script('jquery');
+        wp_enqueue_script(SG_SLUG.'-js', SG_STATIC.'/js/'.SG_SLUG.'.js');
+    }
+    wp_enqueue_style(SG_SLUG.'-stylesheet',  SG_STATIC.'/css/'.SG_SLUG.'.css');
 }
 
 function socialgrid_settings_head() { 
     global $sg_admin; ?>
     <script type="text/javascript">
-        SG_DEFAULTS = <?php echo json_encode($sg_admin->default_services); ?>;
-        SG_SERVICES = <?php echo json_encode($sg_admin->inline_service_list()); ?>;
-        SG_MINI_ICONS = <?php echo json_encode($sg_admin->settings->enable_mini_icons); ?>;
-        SG_DISABLE_TOOLTIPS = <?php echo json_encode($sg_admin->settings->disable_tooltips); ?>;
+        SG_DEFAULTS = <?= json_encode($sg_admin->default_services); ?>;
+        SG_SERVICES = <?= json_encode($sg_admin->inline_service_list()); ?>;
+        SG_MINI_ICONS = <?= json_encode($sg_admin->settings->enable_mini_icons); ?>;
+        SG_DISABLE_TOOLTIPS = <?= json_encode($sg_admin->settings->disable_tooltips); ?>;
         jQuery(document).ready(function() {
             SocialGridAdmin.init();
         });
@@ -86,7 +91,7 @@ function socialgrid_options_admin() {
     global $sg_admin, $sg_settings; ?>
     
     <?php if (is_php5()): // IF PHP5, DO AS NORMAL ?>
-    <?php if ($_GET['reloaded']): ?>
+    <?php if (isset($_GET['reloaded'])): ?>
     <div id="updated" class="updated fade">
         <p><?php echo __('SocialGrid has been reset successfully!', 'socialgrid'); ?></p>
     </div>
